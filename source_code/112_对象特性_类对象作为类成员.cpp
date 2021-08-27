@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+#include <unistd.h>
 // C++类中的成员可以是另一个类的对象，我们称该成员为对象成员
 /* 
     class A{};
@@ -9,7 +9,6 @@ using namespace std;
     };
 
 */
-
 class Phone{
 public:
     Phone(string pName){
@@ -42,6 +41,7 @@ void test01(){
 
 int main(){
     test01();
-    system("pause");
+    // system("pause");
+    pause();
     return 0;
 }
