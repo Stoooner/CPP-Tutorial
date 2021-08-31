@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-    - 浅拷贝： 简单的赋值拷贝
+    - 浅拷贝： 简单的赋值拷贝(也即等号赋值操作)
     - 深拷贝： 在堆区重新申请空间，进行拷贝操作
     - 如果属性有在堆区开辟的，一定要自己提供拷贝构造函数，防止浅拷贝带来的问题
 */
@@ -35,10 +35,11 @@ public:
         if (m_height != NULL){
             // 浅拷贝带来的问题就是堆区的数据会被重复释放
             delete m_height; // 释放m_height指向的堆区内存
-            // 需要注意的是：释放一个指针(delete 指针名),并不会使该指针的值变为 NULL
+            // 需要注意的是：释放一个指针(delete 指针名),并不会使该指针的值变为NULL
             // https://www.cnblogs.com/carle-09/p/11554998.html
             // https://blog.csdn.net/qq_41071068/article/details/102791293
             // https://cloud.tencent.com/developer/article/1803993
+            // delete m_height是删除m_height指向的空间，而不是删除m_height，因此为了预防野指针可将m_height=NULL
             m_height = NULL; // 防止野指针出现, 所以在delete之后再置空一下
         }
         cout << "Person的默认析构函数调用" << endl;

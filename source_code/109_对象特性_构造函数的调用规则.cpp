@@ -1,37 +1,37 @@
 #include <iostream>
 using namespace std;
 /*
-    Ä¬ÈÏÇé¿öÏÂ£¬C++±àÒëÆ÷ÖÁÉÙ¸øÒ»¸öÀàÌí¼ÓÈý¸öº¯Êý£º
-        - Ä¬ÈÏ¹¹Ôìº¯Êý(ÎÞ²Î£¬º¯ÊýÌåÎª¿Õ)£»
-        - Ä¬ÈÏÎö¹¹º¯Êý(ÎÞ²Î£¬º¯ÊýÌåÎª¿Õ)£»
-        - Ä¬ÈÏ¿½±´¹¹Ôìº¯Êý£¬¶ÔÊôÐÔ½øÐÐÖµ¿½±´£»
+    é»˜è®¤æƒ…å†µä¸‹ï¼ŒC++ç¼–è¯‘å™¨è‡³å°‘ç»™ä¸€ä¸ªç±»æ·»åŠ ä¸‰ä¸ªå‡½æ•°ï¼š
+        - é»˜è®¤æž„é€ å‡½æ•°(æ— å‚ï¼Œå‡½æ•°ä½“ä¸ºç©º)ï¼›
+        - é»˜è®¤æžæž„å‡½æ•°(æ— å‚ï¼Œå‡½æ•°ä½“ä¸ºç©º)ï¼›
+        - é»˜è®¤æ‹·è´æž„é€ å‡½æ•°ï¼Œå¯¹å±žæ€§è¿›è¡Œå€¼æ‹·è´ï¼›
     
-    ¹¹Ôìº¯Êýµ÷ÓÃ¹æÔòÈçÏÂ£º
-        - Èç¹ûÓÃ»§¶¨ÒåÓÐ²Î¹¹Ôìº¯Êý£¬ÔòC++²»ÔÙÌá¹©Ä¬ÈÏÎÞ²Î¹¹Ôì£¬µ«ÊÇ»áÌá¹©Ä¬ÈÏ¿½±´¹¹Ôì£»
-        - Èç¹ûÓÃ»§¶¨Òå¿½±´¹¹Ôìº¯Êý£¬ÔòC++²»»áÌá¹©ÆäËû¹¹Ôìº¯Êý
+    æž„é€ å‡½æ•°è°ƒç”¨è§„åˆ™å¦‚ä¸‹ï¼š
+        - å¦‚æžœç”¨æˆ·å®šä¹‰æœ‰å‚æž„é€ å‡½æ•°ï¼Œåˆ™C++ä¸å†æä¾›é»˜è®¤æ— å‚æž„é€ ï¼Œä½†æ˜¯ä¼šæä¾›é»˜è®¤æ‹·è´æž„é€ ï¼›
+        - å¦‚æžœç”¨æˆ·å®šä¹‰æ‹·è´æž„é€ å‡½æ•°ï¼Œåˆ™C++ä¸ä¼šæä¾›å…¶ä»–æž„é€ å‡½æ•°
 */
 
 class Person{
 public:
     Person(){
-        cout << "PersonµÄÄ¬ÈÏ¹¹Ôìº¯Êýµ÷ÓÃ" << endl;
+        cout << "Personçš„é»˜è®¤æž„é€ å‡½æ•°è°ƒç”¨" << endl;
     }
 
     Person(string name, int age){
         m_name = name;
         m_age = age;
-        cout << "PersonµÄÓÐ²Î¹¹Ôìº¯Êýµ÷ÓÃ" << endl;
+        cout << "Personçš„æœ‰å‚æž„é€ å‡½æ•°è°ƒç”¨" << endl;
     }
 
-    // ¿½±´¹¹Ôìº¯Êý±»×¢ÊÍµôÖ®ºó£¬Ê¹ÓÃÀ¨ºÅ·¨´«ÈëÒ»¸ö¶ÔÏóÖ®ºóÒÀ¾ÉÄÜ¹»µ÷ÓÃÏµÍ³Ä¬ÈÏÌá¹©µÄ¿½±´¹¹Ôìº¯Êý£¬Ö»²»¹ýÃ»ÓÐÁËcoutÊä³öÐÅÏ¢
+    // æ‹·è´æž„é€ å‡½æ•°è¢«æ³¨é‡ŠæŽ‰ä¹‹åŽï¼Œä½¿ç”¨æ‹¬å·æ³•ä¼ å…¥ä¸€ä¸ªå¯¹è±¡ä¹‹åŽä¾æ—§èƒ½å¤Ÿè°ƒç”¨ç³»ç»Ÿé»˜è®¤æä¾›çš„æ‹·è´æž„é€ å‡½æ•°ï¼Œåªä¸è¿‡æ²¡æœ‰äº†coutè¾“å‡ºä¿¡æ¯
     Person(const Person &p){
         m_name = p.m_name;
         m_age = p.m_age;
-        cout << "PersonµÄ¿½±´¹¹Ôìº¯Êýµ÷ÓÃ" << endl;
+        cout << "Personçš„æ‹·è´æž„é€ å‡½æ•°è°ƒç”¨" << endl;
     }
     
     ~Person(){
-        cout << "PersonµÄÄ¬ÈÏÎö¹¹º¯Êýµ÷ÓÃ" << endl;
+        cout << "Personçš„é»˜è®¤æžæž„å‡½æ•°è°ƒç”¨" << endl;
     }
     string m_name;
     int m_age;
@@ -40,9 +40,9 @@ public:
 void test01(){
     Person p;
     p.m_age = 18;
-    p.m_name = "ÕÅÈý";
+    p.m_name = "å¼ ä¸‰";
     Person p2(p);
-    cout << "p2µÄÃû×Ö£º" << p2.m_name << ", p2µÄÄêÁä£º" << p2.m_age << endl;
+    cout << "p2çš„åå­—ï¼š" << p2.m_name << ", p2çš„å¹´é¾„ï¼š" << p2.m_age << endl;
 }
 
 void test02(){
