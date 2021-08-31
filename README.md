@@ -19,5 +19,3 @@
 - [mac git命令按Tab不能自动补全解决方法]https://blog.csdn.net/qq_43111384/article/details/104331312
 
 - [git clone 速度慢的问题]https://www.cnblogs.com/cleves/p/13673312.html
-
-- [git 推送更新出现错误： Updates were rejected because the remote contains work that you do]https://blog.csdn.net/gongqinglin/article/details/79752398
