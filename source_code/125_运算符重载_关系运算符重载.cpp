@@ -3,49 +3,51 @@ using namespace std;
 #include <unistd.h>
 #include <string>
 
-class Building;
+/*
+    关系运算符重载的作用：可以让两个自定义类型数据进行对比操作
+*/
 
-class GoodGay{
+class Person{
 public:
-    GoodGay();
-    void visit(); // 让visit函数可以访问Building中的私有成员
-    void visit2(); // 让visit函数不可以访问Building中的私有成员
-    Building *building;
+    Person(string name, int age){
+        m_Name = name;
+        m_Age = age;
+    }
+    // 重载关系运算符
+    bool operator==(Person &p){
+        if (this->m_Name == p.m_Name && this->m_Age == p.m_Age){
+            return true;
+        }
+        return false;
+    }
+
+    // 重载关系运算符
+    bool operator!=(Person &p){
+        if (this->m_Name == p.m_Name && this->m_Age == p.m_Age){
+            return false;
+        }
+        return true;
+    }
+
+    string m_Name;
+    int m_Age;
 };
-
-class Building{
-friend void GoodGay::visit(); //告诉编译器，GoodGay下的成员函数作为本类好朋友，可以访问本类的私有成员
-public:
-    Building();
-public:
-    string m_SittingRoom;
-private:
-    string m_BedRoom;
-};
-
-// 类外实现成员函数
-Building::Building(){
-    m_SittingRoom = "客厅";
-    m_BedRoom = "卧室";
-}
-
-GoodGay::GoodGay(){
-    building = new Building;
-}
-
-void GoodGay::visit(){
-    cout << "visit正在访问：" << building->m_SittingRoom << endl;
-    cout << "visit正在访问：" << building->m_BedRoom << endl;
-}
-
-void GoodGay::visit2(){
-    cout << "visit2正在访问：" << building->m_SittingRoom << endl;
-}
 
 void test01(){
-    GoodGay gg;
-    gg.visit();
-    gg.visit2();
+    Person p1("Tom", 18);
+    Person p2("Tom", 19);
+    // 运算符左边的对象可以调用运算符函数，必须在左边不能在右边
+    // if (p1 == p2){
+    //     cout << "p1 == p2" << endl;
+    // }else{
+    //     cout << "p1 != p2" << endl;
+    // }
+
+    if (p1 != p2){
+        cout << "p1 != p2" << endl;
+    }else{
+        cout << "p1 == p2" << endl;
+    }
 }
 
 int main(){

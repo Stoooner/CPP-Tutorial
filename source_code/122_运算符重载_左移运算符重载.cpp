@@ -2,50 +2,40 @@
 using namespace std;
 #include <unistd.h>
 #include <string>
+/*
+    左移运算符重载作用：可以输出自定义数据类型
+    因此左移运算符配合友元技术可以实现输出自定义数据类型
+*/
 
-class Building;
-
-class GoodGay{
+class Person{
+friend ostream & operator<<(ostream &cout, Person &p);
 public:
-    GoodGay();
-    void visit(); // 让visit函数可以访问Building中的私有成员
-    void visit2(); // 让visit函数不可以访问Building中的私有成员
-    Building *building;
-};
-
-class Building{
-friend void GoodGay::visit(); //告诉编译器，GoodGay下的成员函数作为本类好朋友，可以访问本类的私有成员
-public:
-    Building();
-public:
-    string m_SittingRoom;
+    Person(int a, int b){
+        m_A = a;
+        m_B = b;
+    }
 private:
-    string m_BedRoom;
+    int m_A;
+    int m_B;
+    // 1. 通常不会利用成员函数重载左移运算符，因为无法实现cout标志符在左侧
+    // void operator<<(Person ){
+
+    // }
 };
 
-// 类外实现成员函数
-Building::Building(){
-    m_SittingRoom = "客厅";
-    m_BedRoom = "卧室";
-}
-
-GoodGay::GoodGay(){
-    building = new Building;
-}
-
-void GoodGay::visit(){
-    cout << "visit正在访问：" << building->m_SittingRoom << endl;
-    cout << "visit正在访问：" << building->m_BedRoom << endl;
-}
-
-void GoodGay::visit2(){
-    cout << "visit2正在访问：" << building->m_SittingRoom << endl;
+// 2. 只能利用全局函数重载左移运算符
+// ostream &cout: cout为标准输出流类型的对象，且全局只应有一个这个对象，因此使用ostream &cout
+// 如果要使用链式调用，那么返回值就要作为下一个调用的参数，参数和返回值的类型就必须要统一
+// 而这里ostream类型必须是引用类型，所以返回值必须是引用
+ostream & operator<<(ostream &cout, Person &p){ // 本质： operator<<(cout, p), 其简化形式为：cout << p
+    cout << "m_A = " << p.m_A << ", m_B = " << p.m_B;
+    return cout;
 }
 
 void test01(){
-    GoodGay gg;
-    gg.visit();
-    gg.visit2();
+    Person p(10, 10);
+    // 链式编程
+    cout << p << ", hello " << "world!" << endl;
 }
 
 int main(){

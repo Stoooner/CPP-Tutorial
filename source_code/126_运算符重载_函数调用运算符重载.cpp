@@ -3,53 +3,45 @@ using namespace std;
 #include <unistd.h>
 #include <string>
 
-class Building;
-
-class GoodGay{
+/*
+    - 函数调用运算符()也是可以重载的；
+    - 由于重载后使用的方式非常像函数的调用，因此称为仿函数
+    - 仿函数没有固定写法，非常灵活
+*/
+ 
+// 打印输出类
+class MyPrint{
 public:
-    GoodGay();
-    void visit(); // 让visit函数可以访问Building中的私有成员
-    void visit2(); // 让visit函数不可以访问Building中的私有成员
-    Building *building;
+    // 重载函数调用运算符
+    void operator()(string test){
+        cout << test << endl;
+    }
 };
 
-class Building{
-friend void GoodGay::visit(); //告诉编译器，GoodGay下的成员函数作为本类好朋友，可以访问本类的私有成员
+// 仿函数非常灵活，没有固定的写法，
+class MyAdd{
 public:
-    Building();
-public:
-    string m_SittingRoom;
-private:
-    string m_BedRoom;
+    int operator()(int num1, int num2){
+        return num1 + num2;
+    }
 };
-
-// 类外实现成员函数
-Building::Building(){
-    m_SittingRoom = "客厅";
-    m_BedRoom = "卧室";
-}
-
-GoodGay::GoodGay(){
-    building = new Building;
-}
-
-void GoodGay::visit(){
-    cout << "visit正在访问：" << building->m_SittingRoom << endl;
-    cout << "visit正在访问：" << building->m_BedRoom << endl;
-}
-
-void GoodGay::visit2(){
-    cout << "visit2正在访问：" << building->m_SittingRoom << endl;
-}
 
 void test01(){
-    GoodGay gg;
-    gg.visit();
-    gg.visit2();
+    MyPrint myprint;
+    // 由于使用起来非常像函数调用，因此称为仿函数
+    myprint("Hello World");
+}
+
+void test02(){
+    MyAdd myadd;
+    cout << "result = " << myadd(1, 2) << endl;
+    // 匿名函数对象
+    cout << "result2 = " << MyAdd()(10, 2) << endl;
 }
 
 int main(){
-    test01();
+    // test01();
+    test02();
     pause();
     return 0;
 }
